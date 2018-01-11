@@ -10,5 +10,10 @@ install:
 script:
   - coverage run --source=transaction setup.py test
 
+# API Key inside Travis CI
+deploy:
+  provider: heroku
+  app: py-chain
+
 after_success:
   - coveralls

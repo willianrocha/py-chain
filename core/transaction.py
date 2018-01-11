@@ -17,15 +17,18 @@ class Transaction:
         #   user_name : withdrawals
         # To
         #   user_name : deposits
-        withdrawals_out = sum(tx['from'].values())
-        deposit_in      = sum(tx['to'].values())
+        try:
+            withdrawals_out = sum(tx['from'].values())
+            deposit_in      = sum(tx['to'].values())
+        except KeyError:
+            return False
         if withdrawals_out + deposit_in == 0:
             return True
         return False
 
     # Prepare to send the transaction to the mining pool
     def pushToMiner(self, tx):
-        j = json.dumps(tx, sort_keys=False).encode('utf-8')
+        j = json.dumps(tx, sort_keys=True).encode('utf-8')
         hsh = sha256(j).hexdigest()
         t = time()
         full_transaction = {'ts': t, 'hash': hsh, 'data' : tx}
