@@ -1,19 +1,17 @@
 language: python
-
 python:
-  - "2.7"
-  - "3.6"
-
+- '2.7'
+- '3.6'
 install:
-  - pip install coveralls
-
+- pip install coveralls
 script:
-  - coverage run --source=transaction setup.py test
-
-# API Key inside Travis CI
+- coverage run --source=transaction setup.py test
 deploy:
   provider: heroku
+  api_key:
+    secure: paL9fJWsCQLjUm/hS07MB4Aon/YPVAspzC/nB2djMkjFi+cW9iH92F6vueJVJRfFh5rZWgZlIVQ00X0v3LLkYuhzH3MenxGb/tWO+ZawkRxoF+EsH63F/tmxamnaU53LXO/FNIvDpcBZgHk7AFJgEAfFbRBOjhO7C/L/Fq/VL5vCgebTVaCgNG9oc36RDiWGEnNNn37DUy92bOEM6RjlbugkIoShbL8F7m6VUuaB7TwAjLwXxrmzGc88VuCou5rivWDjkzp3U9YajfcuK8P5S51FevEoz9gY9kADPMylP0mW9OgSqizIpFw4QnaiKzZVFYj+un/RT0j1n8YrTCQF9p8sSqx0rga3DiuqAPEefpWrCj3m7Tj4N/7S9j3lZwlno7IGvWGj6+al3/EvftqL0jbJsSNGYi0/stW/qZyQiuchZwGvDrzdaPC7j7JFtC1Qxy+Fc8PEXVvMsyevHPuJ7uepQSO7/fvWwY81Idxrtt3XqlhuMzP4WE++aNM+rlcjk3cGvRVnmIqHl2YM9hD8xeG5p8KjnHdEIEaUGNqAt6YmklZzSqdf5Vff3Rfy8cMYXjt8ocvBzgxwmsg/AIkgOxfFwJDEaN8rucuuVK/4b9MdzMUL2Pgkl4ZYuJoMSapWeQDLcXmtKkGf17Hbfp0pkV/U2gl61VshPhu0UOZ5hOs=
   app: py-chain
-
+  on:
+    repo: willianrocha/py-chain
 after_success:
-  - coveralls
+- coveralls
